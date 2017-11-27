@@ -1,0 +1,27 @@
+<ion-view hide-nav-bar="true">
+
+	<div class="bar bar-header bar-stable">
+	  	<div class="h1 title">Contactos</div>
+	  	<button class="button button-clear button-positive" ng-click="btnSolicitud();">
+	  		<i class="ion-person-add"></i>
+	  	</button>
+	</div>
+
+    <ion-content>
+
+
+        <ion-refresher
+            pulling-text=""
+            on-refresh="cargar()">
+        </ion-refresher>
+
+    	<br><br>
+    	<ion-item class="item-remove-animate item-icon-right ion-list" type="item-text-no-wrap" ng-repeat="contac in contactos" href="#tab/contactos/{{contac.idContacto}}">
+            <h2>Tienes de contacto a:</h2>
+        	<p>{{contac.tokenUser2}}</p>
+            <i class="icon ion-chevron-right icon-accessory"></i>
+        </ion-item>
+    
+    </ion-content>
+
+</ion-view>

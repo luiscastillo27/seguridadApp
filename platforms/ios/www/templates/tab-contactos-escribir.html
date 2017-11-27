@@ -1,0 +1,41 @@
+<ion-view view-title="{{nombre}}">
+
+    <ion-content class="padding">
+
+        <ion-refresher
+            pulling-text=""
+            on-refresh="cargar()">
+        </ion-refresher>
+
+       
+
+        <div class="item item-balanced item-icon-right" ng-repeat="msn in mensajesEms"> 
+            <h2>{{msn.mensaje}}</h2>
+            <p>{{msn.fecha}}</p>
+            <!-- <button class="button-icon icon ion-email"></button> -->
+        </div> 
+
+        <div class="item item-calm item-icon-right" ng-repeat="msn in mensajesRes"> 
+            <h2>{{msn.mensaje}}</h2>
+            <p>{{msn.fecha}}</p>
+            <a class="button-icon icon ion-email" href="#tab/contactos/token/{{msn.token}}"></a>
+        </div> 
+            
+    
+        <div class="list">
+            <form role="form" name="formMensaje" id="formMensaje">
+                <div class="item item-input-inset">
+                    <label class="item-input-wrapper">
+                      <input type="text" ng-model="verifi.mensaje" minlength="2" required placeholder=" Escribe un mensaje">
+                    </label>
+                    <button class="button button-small button-positive" ng-click="btnEnviarMensaje();" ng-disabled="formMensaje.$invalid">
+                      Enviar
+                    </button>
+                </div>
+            </form>
+        </div>
+        
+
+    </ion-content>
+
+</ion-view>

@@ -1,0 +1,18 @@
+<ion-view view-title="Solicitudes">
+
+    <ion-content>
+
+    	<ion-refresher
+            pulling-text=""
+            on-refresh="cargar()">
+        </ion-refresher>
+    		
+    	<ion-item class="item-remove-animate item-icon-right ion-list" type="item-text-no-wrap" ng-repeat="soli in solicitudes" href="#tab/solicitud/aceptar/{{soli.idSolicitud}}">
+            <h2>Solicitud de:</h2>
+        	<p>{{soli.tokenUser1}}</p>
+            <i class="icon ion-chevron-right icon-accessory"></i>
+        </ion-item>
+
+    </ion-content>
+
+</ion-view>

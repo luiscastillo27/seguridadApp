@@ -1,0 +1,20 @@
+<ion-view view-title="Nueva Solicitud">
+
+    <ion-content class="padding">
+
+    
+        <div class="list">
+            <form role="form" name="formSolicitud" id="formSolicitud">
+                <label class="item item-input input-top"> 
+                    <input type="password" placeholder="Llave del contacto" ng-model="verifi.tokenUser2" minlength="10" required>
+                </label>
+                <button ng-click="btnEnviar();" ng-disabled="formSolicitud.$invalid"  class="button button-block button-positive">
+                    Enviar solicitud
+                </button>
+            </form>
+        </div>
+        
+
+    </ion-content>
+
+</ion-view>

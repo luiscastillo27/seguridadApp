@@ -1,0 +1,36 @@
+<ion-view view-title="Comprobacion">
+
+  <ion-content class="padding">
+
+  	<ion-refresher
+        pulling-text=""
+        on-refresh="cargar()">
+    </ion-refresher>
+
+  	<div class="card">
+	  <div class="item item-text-wrap">
+	   	Llave del emisor
+	  </div>
+	</div>
+
+	<div class="card">
+	  <div class="item item-text-wrap">
+	  	<textarea style="display: block;width: 100%;height: 100px;" ng-model="hash"></textarea>
+	  </div>
+	</div>
+
+	<div class="card">
+	  <div class="item item-text-wrap">
+	   	Llave de la AC
+	  </div>
+	</div>
+
+	<div class="card">
+	  <div class="item item-text-wrap">
+	  	<textarea style="display: block;width: 100%;height: 100px;" ng-model="hash"></textarea>
+	  </div>
+	</div>
+   
+  </ion-content>
+
+</ion-view>

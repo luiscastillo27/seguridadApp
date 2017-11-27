@@ -1,0 +1,26 @@
+<ion-view hide-nav-bar="true">
+    <ion-content scroll="false" class="padding bgLogin">
+
+    
+        <div class="list formLogin">
+            <form role="form" name="formLogin" id="formLogin">
+                <img src="img/usuario.png" class="imgLogin">
+                <label class="item item-input input-top"> 
+                    <input type="password" placeholder="Telefono" ng-model="verifi.telefono" minlength="10" required>
+                </label>
+                <label class="item item-input input-bottom">
+                    <input type="password" placeholder="Nombre" ng-model="verifi.nombre" minlength="3" required>
+                </label>
+                <button ng-click="btnVerificar();" ng-disabled="formLogin.$invalid"  class="button button-block button-positive">
+                    Ingresar
+                </button>
+
+                <button class="button button-block button-outline button-positive" ng-click="crearcuenta();">
+                    Nueva cuenta
+                </button>
+            </form>
+        </div>
+        
+
+    </ion-content>
+</ion-view>

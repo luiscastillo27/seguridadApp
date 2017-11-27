@@ -1,0 +1,23 @@
+*{
+	margin: 0px;
+	padding: 0px;
+}
+.bgLogin{
+	background: #eee;
+}
+.bgCuenta{
+	background: #94DCF9;
+}
+.imgLogin{
+	display: block;
+	width: 100px;
+	margin: 20px auto;
+}
+.formLogin{
+	display: block;
+	width: 70%;
+	margin: 0px auto;
+}
+.ion-person-add{
+	font-size: 27px;
+}

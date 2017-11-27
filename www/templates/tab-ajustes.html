@@ -1,0 +1,28 @@
+<ion-view view-title="Ajustes">
+
+  <ion-content class="padding">
+
+  	<ion-refresher
+        pulling-text=""
+        on-refresh="cargar()">
+    </ion-refresher>
+
+  	<div class="card">
+	  <div class="item item-text-wrap">
+	    Mi Llave
+	  </div>
+	</div>
+
+	<div class="card">
+	  <div class="item item-text-wrap">
+	  	<textarea style="display: block;width: 100%;height: 100px;" ng-model="hash"></textarea>
+	  </div>
+	</div>
+
+	<button ng-click="btnSalir();" class="button button-assertive">
+        Salir
+    </button>
+   
+  </ion-content>
+
+</ion-view>

@@ -65,10 +65,10 @@
 			    	if(resp.message == 'Solicitud enviada'){
 			    		$scope.verifi.tokenUser2 = undefined;
 
-			    		navigator.notification.confirm($scope.verifi.tokenUser2, function(){
+			    		navigator.notification.confirm(tokn1, function(){
                         }, "Hash del Solicitado", ["Aceptar"]);
 
-				        navigator.notification.confirm($scope.verifi.tokenUser2, function(){
+				        navigator.notification.confirm(tokn1, function(){
                        	}, "Hash de la Autoridad Certificadora", ["Aceptar"]);
 
 			    		navigator.notification.confirm(resp.message, function(){

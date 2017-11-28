@@ -61,7 +61,7 @@
 
             var http_config = {
                 method: config.method,
-                url: 'http://192.168.0.10/~Luis/seguridadWS/public/' + config.url,
+                url: 'http://192.168.137.110/~Luis/seguridadWS/public/' + config.url,
                 data: typeof (config.data) === 'undefined' ? null : config.data,
                 headers: headers
             };

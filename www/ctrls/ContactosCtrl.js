@@ -2,7 +2,7 @@
     
     var app = angular.module('ContactosCtrl', []);
 
-    app.controller('ContactosCtrl', ['$scope', 'restApi', 'locStr', '$state', 'auth', '$ionicPopup' , '$stateParams', function ($scope, restApi, locStr, $state, auth, $ionicPopup, $stateParams) {
+    app.controller('ContactosCtrl', ['$scope', 'restApi', 'locStr', '$state', 'auth', '$ionicLoading' , '$stateParams', function ($scope, restApi, locStr, $state, auth, $ionicLoading, $stateParams) {
         
         
         auth.redirectIfNotExists();
@@ -11,6 +11,21 @@
         $scope.mensajesEms = [];
         $scope.mensajesRes = [];
         var tokn2 = "";
+
+        $scope.show = function() {
+            $ionicLoading.show({
+                template: 'Comprobando mensaje...'
+            }).then(function(){
+
+            });
+       	}
+
+        $scope.hide = function(){
+            $ionicLoading.hide().then(function(){
+                           
+            });
+        };
+
         $scope.btnSolicitud = function(){
         	$state.go('tab.solici');
         }
@@ -75,13 +90,15 @@
 				    console.log(valid);
 				}
 			});
-
 		}
+
 		$scope.verifi = {
 			tokenEmisor: undefined,
 			tokenReceptor: undefined,
 			mensaje:  undefined
 		}
+
+
 
 		$scope.btnEnviarMensaje = function(){
 			
@@ -91,6 +108,7 @@
 				mensaje: $scope.verifi.mensaje
 			}
 
+			$scope.show();
 			restApi.call({
 				method: 'post',
 				url: 'mensaje/enviar',
@@ -98,10 +116,22 @@
 				response: function (resp) {
 
 					if(resp.message == 'El mensaje ha sido enviado'){
-			    		$scope.verifi.mensaje = undefined;
-			    		$scope.mensajesEms.push(resp.data);
-			    	}   
+			    		
+			    		setTimeout(function(){
 
+			    			$scope.hide();
+			    			$scope.verifi.mensaje = undefined;
+			    			$scope.mensajesEms.push(resp.data);
+
+			    			navigator.notification.confirm(tokn2, function(){
+                        	}, "Hash del mensaje", ["Aceptar"]);
+
+                        	navigator.notification.confirm($scope.tokn1, function(){
+                        	}, "Hash de la ac", ["Aceptar"]);
+
+			    		}, 4000);
+			    			
+			    	}   
 			    	if(resp.message == 'No se puede enviar el mensaje'){
 			    		$scope.verifi.mensaje = undefined;
 			    		navigator.notification.confirm(resp.message, function(){

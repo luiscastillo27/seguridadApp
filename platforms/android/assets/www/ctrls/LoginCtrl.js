@@ -39,18 +39,23 @@
 			    data: data,
 			    response: function (resp) {
 
-			    	$scope.hide();
-			    	if(resp.message == 'Credenciales no válidas'){
-			    		navigator.notification.confirm(resp.message, function(){
-                        }, "Error", ["Aceptar"]);
-                        $scope.verifi.telefono = undefined;
-        				$scope.verifi.nombre = undefined;
-			    	} else {
-			    		auth.setToken(resp.message);
-	        			$state.go('tab.contactos');
-	        			$scope.verifi.telefono = undefined;
-        				$scope.verifi.nombre = undefined;  
-			    	}			                                
+
+                    setTimeout(function(){
+
+    			    	$scope.hide();
+    			    	if(resp.message == 'Credenciales no válidas'){
+    			    		navigator.notification.confirm(resp.message, function(){
+                            }, "Error", ["Aceptar"]);
+                            $scope.verifi.telefono = undefined;
+            				$scope.verifi.nombre = undefined;
+    			    	} else {
+    			    		auth.setToken(resp.message);
+    	        			$state.go('tab.contactos');
+    	        			$scope.verifi.telefono = undefined;
+            				$scope.verifi.nombre = undefined;  
+    			    	}	
+
+                    }, 2000);		                                
 			                                
 			    },
 			    error: function (err) {

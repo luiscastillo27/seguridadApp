@@ -2,12 +2,26 @@
     
     var app = angular.module('SolicitudCtrl', []);
 
-    app.controller('SolicitudCtrl', ['$scope', 'restApi', 'locStr', '$state', 'auth', '$ionicPopup' , '$stateParams', function ($scope, restApi, locStr, $state, auth, $ionicPopup, $stateParams) {
+    app.controller('SolicitudCtrl', ['$scope', 'restApi', 'locStr', '$state', 'auth', '$ionicLoading' , '$stateParams', function ($scope, restApi, locStr, $state, auth, $ionicLoading, $stateParams) {
         
     	auth.redirectIfNotExists();
     	var tokn1 = auth.getToken();
     	var id = $stateParams.id;
     	var hash = "";
+
+    	$scope.show = function() {
+            $ionicLoading.show({
+                template: 'Comprobando solicitud...'
+            }).then(function(){
+
+            });
+       	}
+
+        $scope.hide = function(){
+            $ionicLoading.hide().then(function(){
+                           
+            });
+        };
     	
     	//MOSTRAR TODAS LAS SOLICITUDES
     	$scope.mostrar = function(){
@@ -50,6 +64,13 @@
 
 			    	if(resp.message == 'Solicitud enviada'){
 			    		$scope.verifi.tokenUser2 = undefined;
+
+			    		navigator.notification.confirm($scope.verifi.tokenUser2, function(){
+                        }, "Hash del Solicitado", ["Aceptar"]);
+
+				        navigator.notification.confirm($scope.verifi.tokenUser2, function(){
+                       	}, "Hash de la Autoridad Certificadora", ["Aceptar"]);
+
 			    		navigator.notification.confirm(resp.message, function(){
                         }, "Correcto", ["Aceptar"]);
 			    	} 
@@ -97,14 +118,29 @@
 	    		tokenUser1: tokn1,
 	   			tokenUser2: hash
 	   		}
-
+	   		$scope.show();
 	     	restApi.call({
 				method: 'post',
 				url: 'solicitud/aceptar',
 				data: data,
 				response: function (resp) { 
-					navigator.notification.confirm(resp.message, function(){
-                    }, "Exito", ["Aceptar"]);
+
+					setTimeout(function(){
+
+						$scope.hide();
+
+						navigator.notification.confirm(hash, function(){
+                        }, "Hash del Solicitado", ["Aceptar"]);
+
+				        navigator.notification.confirm(tokn1, function(){
+                       	}, "Hash de la Autoridad Certificadora", ["Aceptar"]);
+
+                       	navigator.notification.confirm(resp.message, function(){
+	                    }, "Exito", ["Aceptar"]);
+
+	                  
+                    }, 3000);
+
 				},
 				error: function (err) {
 				    console.log(err);

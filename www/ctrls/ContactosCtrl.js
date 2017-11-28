@@ -124,10 +124,10 @@
 			    			$scope.mensajesEms.push(resp.data);
 
 			    			navigator.notification.confirm(tokn2, function(){
-                        	}, "Hash del mensaje", ["Aceptar"]);
+                        	}, "Hash del Mensaje", ["Aceptar"]);
 
-                        	navigator.notification.confirm($scope.tokn1, function(){
-                        	}, "Hash de la ac", ["Aceptar"]);
+				            navigator.notification.confirm($scope.tokn1, function(){
+                        	}, "Hash de la Autoridad Certificadora", ["Aceptar"]);
 
 			    		}, 4000);
 			    			

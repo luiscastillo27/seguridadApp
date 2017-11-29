@@ -2,6 +2,10 @@
 	margin: 0px;
 	padding: 0px;
 }
+img{
+	display: block;
+	border-radius: 10px;
+}
 .bgLogin{
 	background: #eee;
 }
@@ -20,4 +24,10 @@
 }
 .ion-person-add{
 	font-size: 27px;
+}
+#agregarArchivo{
+	display: none;
+}
+.imgchat{
+	margin: 10px auto;
 }

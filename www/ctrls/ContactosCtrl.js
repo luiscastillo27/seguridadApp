@@ -2,7 +2,7 @@
     
     var app = angular.module('ContactosCtrl', []);
 
-    app.controller('ContactosCtrl', ['$scope', 'restApi', 'locStr', '$state', 'auth', '$ionicLoading' , '$stateParams', function ($scope, restApi, locStr, $state, auth, $ionicLoading, $stateParams) {
+    app.controller('ContactosCtrl', ['$scope', 'restApi', 'locStr', '$state', 'auth', '$ionicLoading' , '$stateParams', 'restApiImg', function ($scope, restApi, locStr, $state, auth, $ionicLoading, $stateParams, restApiImg) {
         
         
         auth.redirectIfNotExists();
@@ -11,6 +11,8 @@
         $scope.mensajesEms = [];
         $scope.mensajesRes = [];
         var tokn2 = "";
+        $scope.URLBase = 'http://192.168.0.10/~Luis/seguridadWS/public/archivos/';
+
 
         $scope.show = function() {
             $ionicLoading.show({
@@ -31,6 +33,7 @@
         }
 
         if(id){
+
 	        $scope.cargarMensajes = function(){
 	        	restApi.call({
 					method: 'get',
@@ -95,7 +98,8 @@
 		$scope.verifi = {
 			tokenEmisor: undefined,
 			tokenReceptor: undefined,
-			mensaje:  undefined
+			mensaje:  undefined,
+			archivo: undefined
 		}
 
 
@@ -149,6 +153,70 @@
 
 		}
 
+
+		//BOTON PARA ENVIAR IMAGENES
+		$scope.btnAbirArchivo = function(){
+			$("#agregarArchivo").click();
+		}
+		
+		//ENVIAR IMAGENES
+		$scope.enviarArchivo = function(event){
+			var files = event.target.files;
+            var file = files[files.length-1];
+            $scope.verifi.archivo = file;
+
+            var archivo = $scope.verifi.archivo;
+            var tokenReceptor = tokn2;
+            var tokenEmisor = $scope.tokn1;
+            var formData = new FormData();
+            formData.append("archivo", archivo);
+            formData.append("tokenReceptor", tokenReceptor);
+            formData.append("tokenEmisor", tokenEmisor);
+
+            $scope.show();
+			restApiImg.call({
+				method: 'post',
+				url: 'mensaje/archivos',
+				data: formData,
+				response: function (resp) {
+
+					console.log(resp);
+					if(resp.message == 'El archivo ha sido enviado'){
+			    		
+			    		setTimeout(function(){
+
+			    			$scope.hide();
+			    			$scope.mostrarMensajes();
+
+			    			navigator.notification.confirm(tokenReceptor, function(){
+                        	}, "Hash del Mensaje", ["Aceptar"]);
+
+				            navigator.notification.confirm(tokenReceptor, function(){
+                        	}, "Hash de la Autoridad Certificadora", ["Aceptar"]);
+
+                        	//$state.go('tab.contactos');
+
+			    		}, 4000);
+			    			
+			    	}   
+			    	if(resp.message == 'No se puede enviar el archivo'){
+			    		$scope.verifi.mensaje = undefined;
+			    		navigator.notification.confirm(resp.message, function(){
+                        }, "Error", ["Aceptar"]);
+			    	}   
+
+				},
+				error: function (err) {
+				    console.log(err);
+				},
+				validationError: function (valid) {
+				    console.log(valid);
+				}
+			});
+
+		}
+
+		
 		//LEER MENSAJES
 		$scope.mostrarMensajes = function(){
 			
@@ -156,7 +224,8 @@
 				method: 'get',
 				url: 'mensaje/listarEmi/'+ $scope.tokn1 ,
 				response: function (resp) {
-				    $scope.mensajesEms = resp;   
+					console.log(resp);
+				    $scope.mensajesEms = resp;
 				},
 				error: function (err) {
 				    console.log(err);
@@ -181,6 +250,8 @@
 				}
 			});
 		}
+
+		$scope.mostrarMensajes();
 
 		$scope.cargar = function(){
             $scope.mostrarMensajes();

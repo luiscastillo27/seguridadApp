@@ -2,7 +2,7 @@
 
     var app = angular.module('starter.services', []);
 
-    var URLBase = 'http://192.168.0.10/~Luis/seguridadWS/public/';
+    var URLBase = localStorage["base_url"];
 
     app.factory('auth', ['$location', function ($location) {
         var auth = {

@@ -2,6 +2,8 @@
 
     var app = angular.module('starter.services', []);
 
+    var URLBase = localStorage["base_url"];
+
     app.factory('auth', ['$location', function ($location) {
         var auth = {
             setToken: function (token) {
@@ -61,7 +63,7 @@
 
             var http_config = {
                 method: config.method,
-                url: 'http://192.168.0.10/~Luis/seguridadWS/public/' + config.url,
+                url: URLBase + config.url,
                 data: typeof (config.data) === 'undefined' ? null : config.data,
                 headers: headers
             };
@@ -88,7 +90,43 @@
         };
     }]);
 
+    app.service('restApiImg', ['$http',  'auth', function ($http,  auth) {
+        this.call = function (config) {
+            var token = auth.getToken();
+            var headers = {
+                "Content-type": undefined,
+                "APP-TOKEN": token
+            }
 
+            var http_config = {
+                method: config.method,
+                url: URLBase + config.url,
+                data: typeof (config.data) === 'undefined' ? null : config.data,
+                headers: headers,
+                transformRequest: angular.identity
+            };
+
+            $http(http_config).then(function successCallback(response) {
+                config.response(response.data);
+            }, function errorCallback(response) {
+           
+
+                switch (response.status) {
+                    case 401: // No autorizado
+                        auth.logout();
+                        break;
+                    case 422: // Validación
+                        config.validationError(response.data);
+                        break;
+                    default:
+                        config.error(response);
+                        console.log(response.statusText);
+                        break;
+                }
+            });
+        };
+    }]);
+    
     app.factory('locStr', ['$location', function ($location) {
          //-----------------------------FUENTES-----------------------------
             return {

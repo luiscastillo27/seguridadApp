@@ -1,7 +1,7 @@
 (function(){
 
     var app = angular.module('starter', ['ionic', 'ngCordova','starter.services', 'ContactosCtrl', 'AjustesCtrl', 'LoginCtrl',
-      'SolicitudCtrl', 'TokenCtrl'])
+      'SolicitudCtrl', 'TokenCtrl', 'MensajeCtrl'])
 
     app.run(function($ionicPlatform) {
 
@@ -11,10 +11,17 @@
               cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
               cordova.plugins.Keyboard.disableScroll(true);
             }
+
+            if(window.cordova && window.cordova.InAppBrowser){
+              window.open = cordova.InAppBrowser.open;
+            }
+
             if (window.StatusBar) {
               StatusBar.styleDefault();
             }
 
+            localStorage["base_url"] = 'http://192.168.0.10/~Luis/seguridadWS/public/';
+  
         });
 
     })
@@ -56,7 +63,7 @@
         views: {
           'tab-contactos': {
             templateUrl: 'templates/tab-contactos-escribir.html',
-            controller: 'ContactosCtrl'
+            controller: 'MensajeCtrl'
           }
         }
       })

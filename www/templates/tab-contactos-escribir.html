@@ -13,8 +13,8 @@
                <h2>{{msn.mensaje}}</h2>
                <p>{{msn.fecha}}</p> 
             </div>
-            <div ng-if="msn.archivo">
-               <img class="imgchat" style="width: 100%;" ng-src="{{URLBase}}{{msn.archivo}}">
+            <div ng-if="msn.archivo">   
+               <a href="{{URLBase}}{{msn.archivo}}" style="cursor: pointer;">Abrir archivo</a>
                <p>{{msn.fecha}}</p> 
             </div>
         </div> 
@@ -26,7 +26,7 @@
                 <a class="button-icon icon ion-email" href="#tab/contactos/token/{{msn.token}}"></a>
             </div> 
             <div ng-if="msn.archivo">
-               <img class="imgchat" style="width: 100%;" ng-src="{{URLBase}}{{msn.archivo}}">
+               <a href="{{URLBase}}{{msn.archivo}}" style="cursor: pointer;">Abrir archivo</a>
                <p>{{msn.fecha}}</p> 
             </div>
         </div> 

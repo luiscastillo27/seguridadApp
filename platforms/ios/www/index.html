@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <meta http-equiv="Content-Security-Policy" content="default-src *; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; style-src  'self' 'unsafe-inline' *">
     <title></title>
     <link rel="manifest" href="manifest.json">
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
@@ -11,12 +12,15 @@
     <script src="lib/ngCordova/dist/ng-cordova.js"></script>
     <script src="cordova.js"></script>
     <script src="js/app.js"></script>
+    <script src="js/jquery.js"></script>
     <script src="js/services.js"></script>
     <script src="ctrls/ContactosCtrl.js"></script>
     <script src="ctrls/AjustesCtrl.js"></script>
     <script src="ctrls/LoginCtrl.js"></script>
     <script src="ctrls/SolicitudCtrl.js"></script> 
     <script src="ctrls/TokenCtrl.js"></script>
+    <script src="ctrls/MensajeCtrl.js"></script>
+    
   </head>
   <body ng-app="starter" class="platform-ios platform-cordova platform-webview">
     

@@ -24,6 +24,12 @@
     },
     "ionic-plugin-keyboard": {
       "PACKAGE_NAME": "io.ionic.starter"
+    },
+    "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "com.ionicframework.seguridadinfoupp271518"
+    },
+    "cordova-plugin-file-transfer": {
+      "PACKAGE_NAME": "com.ionicframework.seguridadinfoupp271518"
     }
   },
   "dependent_plugins": {
@@ -36,6 +42,9 @@
     },
     "cordova-plugin-statusbar": {
       "PACKAGE_NAME": "io.ionic.starter"
+    },
+    "cordova-plugin-file": {
+      "PACKAGE_NAME": "com.ionicframework.seguridadinfoupp271518"
     }
   }
 }

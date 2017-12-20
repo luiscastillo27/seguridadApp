@@ -20,8 +20,8 @@
               StatusBar.styleDefault();
             }
 
-            localStorage["base_url"] = 'http://192.168.43.142/~Luis/seguridadWS/public/';
-            localStorage["img_url"] = 'http://localhost/~luis/seguridadWS/archivos/';
+            localStorage["base_url"] = 'http://192.168.0.12/~Luis/seguridadWS/public/';
+            localStorage["img_url"] = 'http://192.168.0.12/~luis/seguridadWS/archivos/';
   
         });
 

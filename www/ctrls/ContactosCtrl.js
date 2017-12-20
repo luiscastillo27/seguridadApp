@@ -28,6 +28,9 @@
 
         $scope.mostrarContactos();
     	
+    	$scope.btnSolicitud = function(){
+        	$state.go('tab.solici');
+        }
 		
 		$scope.cargar = function(){
             $scope.mostrarContactos();

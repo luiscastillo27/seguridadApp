@@ -48,9 +48,7 @@
             });
         };
 
-        $scope.btnSolicitud = function(){
-        	$state.go('tab.solici');
-        }
+        
 
 	    $scope.cargarMensajes = function(){
 	        restApi.call({
